@@ -1,0 +1,60 @@
+<section class="movies py-3">
+  <h2 class=" bold mb-3 ms-4">Trending Movies this week</h2> 
+<div>
+  <owl-carousel-o [options]="customOptions" > 
+      <ng-template carouselSlide *ngFor="let movie of trendingMovies" > 
+        <a [routerLink]="['/mediaTypeDetails', movie.id , movie.media_type]" >
+          <div class="item mx-2 h-50 rounded position-relative">  
+            <img [src]="'https://image.tmdb.org/t/p/w500/'+ movie.poster_path" class="w-100 rounded" alt=""> 
+            <h3 class="name   h5 text-center">{{movie.title.slice(0,15)}}</h3> 
+            <div class="date bg-dark text-white border-none text-center" >{{movie.release_date}}</div>
+            <div class="rate position-absolute top-0 end-0 p-2 bg-danger text-white"> 
+              <i class="fa-solid fa-star text-warning pe-1"></i>{{movie.vote_average.toFixed(1)}}
+            </div>
+          </div>
+        </a>
+      </ng-template> 
+  </owl-carousel-o>
+</div> 
+</section> 
+<br>
+<hr class="">
+<br>
+<section class="tv py-3">
+  <h2 class=" bold mb-3 ms-4">Trending Tv Shows this week</h2> 
+<div>
+  <owl-carousel-o [options]="customOptions" > 
+      <ng-template carouselSlide *ngFor="let tv of trendingShows" >  
+        <a [routerLink]="['/mediaTypeDetails', tv.id , tv.media_type]">
+          <div class="item mx-2 h-50 rounded position-relative">  
+            <img [src]="'https://image.tmdb.org/t/p/w500/'+ tv.poster_path" class="w-100 h-100 rounded" alt=""> 
+            <h3 class="name h5 text-center">{{tv.name.slice(0,15)}}</h3> 
+            <div class="date bg-dark text-white border-none text-center" >{{tv.first_air_date}}</div>
+            <div class="rate position-absolute top-0 end-0 p-2 bg-danger text-white"> 
+              <i class="fa-solid fa-star text-warning pe-1"></i>{{tv.vote_average.toFixed(1)}}
+            </div>
+          </div> 
+        </a>
+      </ng-template> 
+  </owl-carousel-o>
+</div>
+</section> 
+<br>
+<hr class="">
+<br>
+<section class="people py-3 mb-4">
+  <h2 class=" bold mb-3 ms-4">Trending Actors this week</h2> 
+<div>
+  <owl-carousel-o [options]="customOptions" > 
+      <ng-template carouselSlide *ngFor="let person of trendingPeople" >  
+        <a [routerLink]="['/mediaTypeDetails', person.id , person.media_type]">
+        <div class="item mx-2 h-50 ">  
+          <img [src]="'https://image.tmdb.org/t/p/w500/'+ person.profile_path" class="w-100 h-100 rounded" alt=""> 
+          <h3 class="name h5 text-center">{{person.name.slice(0,15)}}</h3> 
+          <div class="date bg-dark text-white border-none text-center" >{{person.known_for_department}}</div>
+        </div> 
+        </a>
+      </ng-template> 
+  </owl-carousel-o>
+</div>
+</section>

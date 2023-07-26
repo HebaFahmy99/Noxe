@@ -1,0 +1,52 @@
+<div id="bgImageDiv" *ngIf="itemDetails.backdrop_path" class="pt-5" [style.background-image]="'url(https://image.tmdb.org/t/p/original' + itemDetails.backdrop_path+')'"> 
+    <div class="container py-5" >
+        <div class="row">
+            <div class="col-md-3">
+                <img  [src]="'https://image.tmdb.org/t/p/w500/'+ itemDetails.poster_path" class="w-100 rounded" alt=""> 
+            </div> 
+            <div class="col-md-9">
+                <div class="item ">
+                    <h3 class="bold" [style.font-weight]="600" >{{itemDetails.title}} {{itemDetails.name}}</h3>  
+                    <h4 class="bolder text-light fs-4">{{itemDetails.overview}}</h4>   
+                    <div class="row mt-3 justify-content-center">
+                        <h6 *ngIf="itemDetails.vote_average" class="bg-danger col-md-4 p-2 me-2 text-center">Vote Average <span class="bold">{{itemDetails.vote_average}}</span></h6> 
+                        <h6 *ngIf="itemDetails.vote_count" class="bg-danger col-md-4 p-2 me-2 text-center">Vote Count <span class="bold">{{itemDetails.vote_count}}</span></h6> 
+                        <h6 *ngIf="itemDetails.number_of_episodes" class="bg-danger col-md-4 p-2 me-2 text-center">Number of Episodes <span class="bold">{{itemDetails.number_of_episodes}}</span></h6> 
+                        <h6 *ngIf="itemDetails.number_of_seasons" class="bg-danger col-md-4 p-2 me-2 text-center">Number of Seasons <span class="bold">{{itemDetails.number_of_seasons}}</span></h6> 
+                     </div>
+                </div>
+                <div *ngIf="itemDetails.title" class="mt-4">
+                    <h3 class="bold">Movie Cast</h3> 
+                    <owl-carousel-o [options]="customOptions"> 
+                        <ng-template carouselSlide *ngFor="let member of CrewList" > 
+                            <div class="item mx-2 h-50 rounded ">  
+                              <img [src]="'https://image.tmdb.org/t/p/w500/'+ member.profile_path" class="w-100 rounded" alt=""> 
+                              <h3 class="name   h5 text-center">{{member.name}}</h3> 
+                              <div class="date bg-danger text-white border-none text-center" >{{member.character}}</div>
+                            </div>
+                        </ng-template> 
+                    </owl-carousel-o>
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
+<div> 
+    <div class="container py-5" *ngIf="!itemDetails.backdrop_path"  >
+        <div class="row">
+            <div class="col-md-3">
+                <img  [src]="'https://image.tmdb.org/t/p/w500/'+ itemDetails.profile_path" class="w-100 rounded" alt=""> 
+            </div> 
+            <div class="col-md-9">
+                <div class="item ">
+                    <h3 class="bold" [style.font-weight]="600" >{{itemDetails.name}}</h3>  
+                    <h5 class=" text-light muted">{{itemDetails.biography}}</h5> 
+                    <div class="row">
+                        <h6 *ngIf="itemDetails.birthday" class="bg-danger col-md-5 p-2 me-2 text-center rounded">Birthady {{itemDetails.birthday}}</h6> 
+                        <h6 *ngIf="itemDetails.place_of_birth" class="bg-danger col-md-5 p-2 text-center rounded">Place of birth: {{itemDetails.place_of_birth}}</h6>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div> 
+</div>
